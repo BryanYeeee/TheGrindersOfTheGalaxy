@@ -2,8 +2,8 @@ export const EventLog = {
 	logFn: null,
 	// eventQueue: {},
 
-    setLogFunction(fn) {
-        this.logFn = fn
+    setLogFunction(logFn) {
+        this.logFn = (msg) => logFn((prev) => [...prev, msg])
     },
 
 	addEvent(msg) {

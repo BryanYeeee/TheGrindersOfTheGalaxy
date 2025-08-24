@@ -2,8 +2,8 @@ export const Inventory = {
   inv: null,
   invFn: null,
 
-  setInvFn (inv, invFn) {
-    ;[this.inv, this.invFn] = [inv, invFn]
+  setInvFunction (inv, invFn) {
+    [this.inv, this.invFn] = [inv, (type, amount) => invFn(prev => ({ ...prev, [type]: amount }))]
   },
 
   setItem (type, amount) {

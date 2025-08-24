@@ -1,0 +1,25 @@
+import { useGameContext } from '@/context/gameContext'
+// import { memo } from 'react'
+
+const EquipmentPanel = () => {
+  const { equipment } = useGameContext()
+
+  return (
+    <div className='h-4/5 w-120 bg-amber-300'>
+      {/* {Object.entries(inventory).map(([name, count]) => (
+        <InventoryItem key={name} name={name} count={count} />
+      ))} */}
+      {JSON.stringify(equipment)}
+    </div>
+  )
+}
+// const EquipmentItem = memo(({ name, count }) => {
+//   console.log(`Rendering ${name}`)
+//   return (
+//     <div>
+//       {name}: {count}
+//     </div>
+//   )
+// })
+
+export default EquipmentPanel

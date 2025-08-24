@@ -2,16 +2,19 @@
 import React, { createContext, useContext, useState } from "react";
 import { EventLog } from "@/lib/mech/eventLog";
 import { Inventory } from "@/lib/mech/inventory";
+import { Equipment } from "@/lib/mech/equipment";
 
 const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
-  const [eventLog, setEventLog] = useState([]);
-  const [inventory, setInventory] = useState({});
+  const [eventLog, setEventLog] = useState([])
+  const [inventory, setInventory] = useState({})
+  const [equipment, setEquipment] = useState({})
 //   const [playerStats, setPlayerStats] = useState({ steps: 0, health: 100 });
 
-  EventLog.setLogFunction((msg) => setEventLog((prev) => [...prev, msg]))
-  Inventory.setInvFn(inventory, (type, amount) => setInventory(prev => ({ ...prev, [type]: amount })))
+  EventLog.setLogFunction(setEventLog)
+  Inventory.setInvFunction(inventory, setInventory)
+  Equipment.setEquipFunction(equipment, setEquipment)
 
   return (
     <GameContext.Provider
@@ -19,6 +22,7 @@ export const GameProvider = ({ children }) => {
         eventLog,
         // setGameLog,
         inventory,
+        equipment
         // setInventory,
         // playerStats,
         // setPlayerStats
