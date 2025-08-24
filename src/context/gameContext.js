@@ -10,6 +10,7 @@ export const GameProvider = ({ children }) => {
   const [eventLog, setEventLog] = useState([])
   const [inventory, setInventory] = useState({})
   const [equipment, setEquipment] = useState({})
+  const [curPlanetKey, setCurPlanetKey] = useState("earth");
 //   const [playerStats, setPlayerStats] = useState({ steps: 0, health: 100 });
 
   EventLog.setLogFunction(setEventLog)
@@ -22,7 +23,8 @@ export const GameProvider = ({ children }) => {
         eventLog,
         // setGameLog,
         inventory,
-        equipment
+        equipment,
+        curPlanetKey
         // setInventory,
         // playerStats,
         // setPlayerStats

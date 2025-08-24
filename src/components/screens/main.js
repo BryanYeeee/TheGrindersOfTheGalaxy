@@ -2,6 +2,7 @@
 import InventoryPanel from '@/components/panels/inventoryPanel'
 import EventLogPanel from '@/components/panels/eventLogPanel'
 import EquipmentPanel from '@/components/panels/equipmentPanel'
+import CommandPanel from '@/components/panels/commandPanel'
 
 // Mechs
 import { EventLog } from '@/lib/mech/eventLog'
@@ -25,23 +26,26 @@ const Main = () => {
         <div className='flex gap-4'>
           <div
             className='border-1 w-20 m-8'
-            onClick={() => Equipment.addEquipment('pickaxe', { name:'aaa', speed: 1 })}
+            onClick={() => Equipment.addEquipment('pickaxe', { name: 'aaa', speed: 1 })}
           >
             add speed 1pick
           </div>
           <div
             className='border-1 w-20 m-8'
-            onClick={() => Equipment.addEquipment('pickaxe', { name:'bbb', speed: 2 })}
+            onClick={() => Equipment.addEquipment('pickaxe', { name: 'bbb', speed: 2 })}
           >
             add speed 2pick
           </div>
           <div
             className='border-1 w-20 m-8'
-            onClick={() => Equipment.addEquipment('sword', { name:'ccc', dmg: 20 })}
+            onClick={() => Equipment.addEquipment('sword', { name: 'ccc', dmg: 20 })}
           >
             add sword
           </div>
         </div>
+      </div>
+      <div>
+        <CommandPanel/>
       </div>
       <div>
         <InventoryPanel />

@@ -8,11 +8,11 @@ export const earthConfig = {
         heat: 5,
         oxygen: -100,
     },
-    actions: {
+    commands: {
         'walk': {
             text: "take a step",
             hover: "take the step please",
-            click: Earth.takeStep,
+            click: "takeStep",
             cooldown: 750,
             cost: {
 
@@ -21,7 +21,7 @@ export const earthConfig = {
         'stone': {
             text: "pickup stone",
             hover: "Cost 2 Steps",
-            click: Earth.pickupStone,
+            click: "pickupStone",
             cooldown: 2000,
             cost: {
                 'steps': 2

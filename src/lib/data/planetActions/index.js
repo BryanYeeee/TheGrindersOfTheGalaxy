@@ -1,1 +1,0 @@
-export { earthActions } from '@/lib/data/planetActions/earth'
