@@ -1,0 +1,1 @@
+export { earthConfig } from '@/lib/data/planetConfig/earthConfig'
