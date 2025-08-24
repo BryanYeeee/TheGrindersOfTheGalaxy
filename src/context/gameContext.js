@@ -1,36 +1,43 @@
-// GameContext.jsx
-import React, { createContext, useContext, useState } from "react";
-import { EventLog } from "@/lib/mech/eventLog";
-import { Inventory } from "@/lib/mech/inventory";
-import { Equipment } from "@/lib/mech/equipment";
+import React, { createContext, useContext, useState } from 'react'
+import { EventLog } from '@/lib/mech/eventLog'
+import { Inventory } from '@/lib/mech/inventory'
+import { Equipment } from '@/lib/mech/equipment'
+import { Status } from '@/lib/mech/status'
 
-const GameContext = createContext();
+const GameContext = createContext()
 
 export const GameProvider = ({ children }) => {
   const [eventLog, setEventLog] = useState([])
-  const [inventory, setInventory] = useState({})
-  const [equipment, setEquipment] = useState({})
-//   const [playerStats, setPlayerStats] = useState({ steps: 0, health: 100 });
-
   EventLog.setLogFunction(setEventLog)
+
+  const [inventory, setInventory] = useState({})
   Inventory.setInvFunction(inventory, setInventory)
+
+  const [equipment, setEquipment] = useState({})
   Equipment.setEquipFunction(equipment, setEquipment)
+
+  const [status, setStatus] = useState({
+    hunger: 0,
+    oxygen: 10,
+    heat: 0
+  })
+  Status.setStatusFunction(status, setStatus)
+
+  //   const [playerStats, setPlayerStats] = useState({ health: 100 });
 
   return (
     <GameContext.Provider
       value={{
         eventLog,
-        // setGameLog,
         inventory,
-        equipment
-        // setInventory,
-        // playerStats,
-        // setPlayerStats
+        equipment,
+        status
+        // playerStats
       }}
     >
       {children}
     </GameContext.Provider>
-  );
-};
+  )
+}
 
-export const useGameContext = () => useContext(GameContext);
+export const useGameContext = () => useContext(GameContext)
