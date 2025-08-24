@@ -5,7 +5,7 @@ const InventoryPanel = () => {
   const { inventory } = useGameContext()
 
   return (
-    <div className='h-full bg-foreground1'>
+    <div className='h-full bg-foreground1 p-8'>
       {Object.entries(inventory).map(([name, count]) => (
         <InventoryItem key={name} name={name} count={count} />
       ))}
@@ -15,8 +15,9 @@ const InventoryPanel = () => {
 const InventoryItem = memo(({ name, count }) => {
   console.log(`Rendering ${name}`)
   return (
-    <div>
-      {name}: {count}
+    <div className='flex justify-between px-2 mb-1 border-1 border-[#ffac2230]'>
+      <div>{name}</div>
+      <div>{count}</div> 
     </div>
   )
 })

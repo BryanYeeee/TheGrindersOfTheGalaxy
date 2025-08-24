@@ -39,12 +39,12 @@ const Game = () => {
 
         <div className='glow-border corner-clip'>
           <EventLogPanel />
-          {/* <div
-            className='border-1 w-full'
-            onClick={() => EventLog.addEvent('abc')}
+          <div
+            className='border-1'
+            onClick={() => EventLog.addEvent(Math.floor(Math.random() * (100+ 1)))}
           >
-            add abc
-          </div> */}
+            add something to log
+          </div>
         </div>
       </div>
     </GameProvider>
