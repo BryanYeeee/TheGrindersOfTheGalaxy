@@ -8,10 +8,10 @@ import { Equipment } from '@/lib/mech/equipment'
 
 const Main = () => {
   return (
-    <div className='h-full w-full grid grid-rows-1 grid-cols-[4fr_1fr] gap-12 py-8'>
+    <div className='h-full w-full grid grid-rows-1 grid-cols-[3fr_1fr] gap-12 py-8'>
       <div className='h-full grid grid-rows-[1fr_1fr] grid-cols-1 gap-12'>
-        <div className='border-1'>
-          <EquipmentPanel />
+        <div className='border-1 bg-foreground2 glow-border clip-b'>
+          {/* <EquipmentPanel />
           <div className='flex gap-4'>
             <div
               className='border-1 w-20 m-8'
@@ -37,12 +37,12 @@ const Main = () => {
             >
               add sword
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className='border-1'></div>
+        <div className='border-1 bg-foreground2 glow-border clip-t'></div>
       </div>
       
-      <div className='border-1'>
+      <div className='border-1 glow-border clip-l'>
         <InventoryPanel />
         <div className='flex flex-col gap-4'>
           <div

@@ -10,9 +10,10 @@ import { Status } from '@/lib/mech/status'
 const Game = () => {
   const currentScreen = <Main />
   return (
-    <GameProvider>
-      <div className='min-h-150 h-screen w-full grid grid-cols-[1fr_4fr_25%] grid-rows-1 gap-12 p-12'>
-        <div className='border-1'>
+    <GameProvider className='relative'>
+      <div className='absolute w-screen h-screen bg -z-10' />
+      <div className='min-h-150 h-screen w-full grid grid-cols-[1fr_5fr_20%] grid-rows-1 gap-12 p-12'>
+        <div className='border-1 glow-border corner-clip2'>
           <StatusPanel />
           <div
             className='border-1 w-full'
@@ -36,14 +37,14 @@ const Game = () => {
 
         <div className=''>{currentScreen}</div>
 
-        <div className='border-1'>
+        <div className='glow-border corner-clip'>
           <EventLogPanel />
-          <div
+          {/* <div
             className='border-1 w-full'
             onClick={() => EventLog.addEvent('abc')}
           >
             add abc
-          </div>
+          </div> */}
         </div>
       </div>
     </GameProvider>

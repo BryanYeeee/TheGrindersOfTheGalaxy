@@ -5,7 +5,7 @@ const EquipmentPanel = () => {
   const { equipment } = useGameContext()
 
   return (
-    <div className='bg-amber-300'>
+    <div className='h-full bg-foreground1'>
       {/* {Object.entries(inventory).map(([name, count]) => (
         <InventoryItem key={name} name={name} count={count} />
       ))} */}
