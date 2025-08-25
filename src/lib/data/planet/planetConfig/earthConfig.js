@@ -1,5 +1,5 @@
 export const earthConfig = {
-    name: "earth",
+    name: "Earth",
     description: "you are here",
     src: "earth.jpeg",
     stats: {
@@ -15,7 +15,6 @@ export const earthConfig = {
             click: "takeStep",
             cooldown: 750,
             cost: {
-
             }
         },
         'stone': {
@@ -24,7 +23,8 @@ export const earthConfig = {
             click: "pickupStone",
             cooldown: 2000,
             cost: {
-                'steps': 2
+                'steps': 2,
+                // 'pickaxe': true
             }
         }
     }

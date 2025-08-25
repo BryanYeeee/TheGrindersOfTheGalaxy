@@ -8,6 +8,7 @@ import CommandPanel from '@/components/panels/commandPanel'
 import { EventLog } from '@/lib/mech/eventLog'
 import { Inventory } from '@/lib/mech/inventory'
 import { Equipment } from '@/lib/mech/equipment'
+import { Planet } from '@/lib/mech/planet'
 
 const Main = () => {
   return (
@@ -46,6 +47,14 @@ const Main = () => {
       </div>
       <div>
         <CommandPanel/>
+        <div className='flex gap-4'>
+          <div
+            className='border-1 w-20 m-8'
+            onClick={() => Planet.setCurPlanet("venus")}
+          >
+            send to VENus
+          </div>
+        </div>
       </div>
       <div>
         <InventoryPanel />

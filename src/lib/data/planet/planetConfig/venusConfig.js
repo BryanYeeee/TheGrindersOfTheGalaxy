@@ -18,7 +18,7 @@ export const venusConfig = {
                 
             }
         },
-        'stone': {
+        'carbon': {
             text: "extract carbon",
             hover: "Cost 2 Steps",
             click: "extractCarbon",
