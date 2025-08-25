@@ -11,17 +11,21 @@ const GameContext = createContext()
 
 export const GameProvider = ({ children }) => {
   const [eventLog, setEventLog] = useState([])
-  const [inventory, setInventory] = useState({})
-  const [equipment, setEquipment] = useState({})
   const [curPlanetKey, setCurPlanetKey] = useState("earth");
   const [cooldowns, setCooldowns] = useState({});
 //   const [playerStats, setPlayerStats] = useState({ steps: 0, health: 100 });
 
   EventLog.setLogFunction(setEventLog)
+
+  const [inventory, setInventory] = useState({})
   Inventory.setInvFunction(inventory, setInventory)
+
+  const [equipment, setEquipment] = useState({})
   Equipment.setEquipFunction(equipment, setEquipment)
   Cooldown.setCooldownFunction(cooldowns, setCooldowns);
   Planet.setPlanetFunction(["earth", "venus", "sun", "moon", "asteroid belt", "black hole", "comet"], curPlanetKey, setCurPlanetKey);
+
+  //   const [playerStats, setPlayerStats] = useState({ health: 100 });
 
   const [status, setStatus] = useState({
     hunger: 0,

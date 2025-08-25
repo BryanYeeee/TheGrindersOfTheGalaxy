@@ -19,7 +19,7 @@ const CommandPanel = () => {
         }
     }
     return (
-        <div className="h-4/5 w-30 bg-amber-300 p-2">
+        <div className="h-4/5 w-30 p-2">
             {/* <h2>{config.name}</h2> */}
             {config.name}
             <div className="stats mb-2">

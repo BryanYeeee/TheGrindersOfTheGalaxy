@@ -1,77 +1,81 @@
 // Panels
 import InventoryPanel from '@/components/panels/inventoryPanel'
-import EventLogPanel from '@/components/panels/eventLogPanel'
 import EquipmentPanel from '@/components/panels/equipmentPanel'
 import CommandPanel from '@/components/panels/commandPanel'
 
 // Mechs
-import { EventLog } from '@/lib/mech/eventLog'
 import { Inventory } from '@/lib/mech/inventory'
 import { Equipment } from '@/lib/mech/equipment'
 import { Planet } from '@/lib/mech/planet'
 
 const Main = () => {
   return (
-    <div className='w-screen h-screen flex justify-around'>
-      <div>
-        <EquipmentPanel />
-        <div className='flex gap-4'>
-          <div
-            className='border-1 w-20 m-8'
-            onClick={() => Equipment.addEquipment('pickaxe', { name: 'aaa', speed: 1 })}
-          >
-            add speed 1pick
-          </div>
-          <div
-            className='border-1 w-20 m-8'
-            onClick={() => Equipment.addEquipment('pickaxe', { name: 'bbb', speed: 2 })}
-          >
-            add speed 2pick
-          </div>
-          <div
-            className='border-1 w-20 m-8'
-            onClick={() => Equipment.addEquipment('sword', { name: 'ccc', dmg: 20 })}
-          >
-            add sword
-          </div>
-        </div>
-      </div>
-      <div>
-        <CommandPanel />
-        <div className='flex gap-4'>
-          <div
-            className='border-1 w-20 m-8'
-            onClick={() => Planet.setCurPlanet("venus")}
-          >
-            send to VENus
-          </div>
-        </div>
-      </div>
-      <div>
-        <div className='border-1 glow-border clip-l'>
-          <InventoryPanel />
+    <div className='h-full w-full grid grid-rows-1 grid-cols-[3fr_1fr] gap-12 py-8'>
+      <div className='h-full grid grid-rows-[1fr_1fr] grid-cols-1 gap-12'>
+        <div className='border-1 bg-foreground2 glow-border clip-b'>
+          <CommandPanel />
           <div className='flex gap-4'>
             <div
               className='border-1 w-20 m-8'
-              onClick={() => Inventory.addItem('w', 1)}
+              onClick={() => Planet.setCurPlanet("venus")}
             >
-              w add 1
+              send to VENus
+            </div>
+          </div>
+          {/* <EquipmentPanel />
+          <div className='flex gap-4'>
+            <div
+              className='border-1 w-20 m-8'
+              onClick={() =>
+                Equipment.addEquipment('pickaxe', { name: 'aaa', speed: 1 })
+              }
+            >
+              add speed 1pick
             </div>
             <div
               className='border-1 w-20 m-8'
-              onClick={() => {
-                Inventory.setItem('w', 10)
-                Inventory.setItem('q', 10)
-              }}
+              onClick={() =>
+                Equipment.addEquipment('pickaxe', { name: 'bbb', speed: 2 })
+              }
             >
-              w q set 0
+              add speed 2pick
             </div>
             <div
               className='border-1 w-20 m-8'
-              onClick={() => Inventory.addItem('q', 1)}
+              onClick={() =>
+                Equipment.addEquipment('sword', { name: 'ccc', dmg: 20 })
+              }
             >
-              q add 1
+              add sword
             </div>
+          </div> */}
+        </div>
+        <div className='border-1 bg-foreground2 glow-border clip-t'></div>
+      </div>
+
+      <div className='border-1 glow-border clip-l'>
+        <InventoryPanel />
+        <div className='flex flex-col'>
+          <div
+            className='border-1'
+            onClick={() => Inventory.addItem('steps', 1)}
+          >
+            steps add 1
+          </div>
+          <div
+            className='border-1'
+            onClick={() => {
+              Inventory.setItem('steps', 10)
+              Inventory.setItem('stones', 10)
+            }}
+          >
+            both set 10
+          </div>
+          <div
+            className='border-1'
+            onClick={() => Inventory.addItem('stones', 1)}
+          >
+            stones add 1
           </div>
         </div>
       </div>
