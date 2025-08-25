@@ -3,7 +3,10 @@ export const Inventory = {
   invFn: null,
 
   setInvFunction (inv, invFn) {
-    [this.inv, this.invFn] = [inv, (type, amount) => invFn(prev => ({ ...prev, [type]: amount }))]
+    [this.inv, this.invFn] = [
+      inv,
+      (type, amount) => invFn(prev => ({ ...prev, [type]: amount }))
+    ]
   },
 
   setItem (type, amount) {

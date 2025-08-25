@@ -1,13 +1,22 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1b3a3a;
+  --foreground1: #202e2a;
+  --foreground2: #3c4943;
+  --gray: #6c7570;
+  --space: #3c4943;
+  --gunmetal: #1b3a3a;
+  --accent: #ffac22;
+  --font-col: #d7d7d7;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-foreground1: var(--foreground1);
+  --color-foreground2: var(--foreground2);
+  --color-accent: var(--accent);
+  --color-font-col: var(--font-col);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -19,8 +28,54 @@
   }
 } */
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--font-col);
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: monospace
+}
+
+.corner-clip::before {
+  clip-path: polygon(25% 0, 100% 0, 100% 75%, 75% 100%, 0 100%, 0 25%);
+}
+.corner-clip2::before {
+  clip-path: polygon(0 0, 75% 0%, 100% 25%, 100% 100%, 25% 100%, 0% 75%);
+}
+.clip-t::before {
+  clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
+}
+.clip-b::before {
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+}
+.clip-l::before {
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+}
+
+.glow-border {
+  position: relative;
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 10px var(--accent); /* Neon glow */
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 10px var(--accent); /* Neon glow */
+  z-index: -1;
+}
+
+.bg {
+  background-color: #1b3a3a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23173232' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%23132929' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%230f2121' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%230c1919' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23081111' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23040808' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23000000' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
 }

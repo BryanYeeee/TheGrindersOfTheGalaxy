@@ -14,15 +14,6 @@ const Main = () => {
   return (
     <div className='w-screen h-screen flex justify-around'>
       <div>
-        <EventLogPanel />
-        <div
-          className='border-1 w-20 m-8'
-          onClick={() => EventLog.addEvent('abc')}
-        >
-          add abc
-        </div>
-      </div>
-      <div>
         <EquipmentPanel />
         <div className='flex gap-4'>
           <div
@@ -46,7 +37,7 @@ const Main = () => {
         </div>
       </div>
       <div>
-        <CommandPanel/>
+        <CommandPanel />
         <div className='flex gap-4'>
           <div
             className='border-1 w-20 m-8'
@@ -57,28 +48,30 @@ const Main = () => {
         </div>
       </div>
       <div>
-        <InventoryPanel />
-        <div className='flex gap-4'>
-          <div
-            className='border-1 w-20 m-8'
-            onClick={() => Inventory.addItem('w', 1)}
-          >
-            w add 1
-          </div>
-          <div
-            className='border-1 w-20 m-8'
-            onClick={() => {
-              Inventory.setItem('w', 10)
-              Inventory.setItem('q', 10)
-            }}
-          >
-            w q set 0
-          </div>
-          <div
-            className='border-1 w-20 m-8'
-            onClick={() => Inventory.addItem('q', 1)}
-          >
-            q add 1
+        <div className='border-1 glow-border clip-l'>
+          <InventoryPanel />
+          <div className='flex gap-4'>
+            <div
+              className='border-1 w-20 m-8'
+              onClick={() => Inventory.addItem('w', 1)}
+            >
+              w add 1
+            </div>
+            <div
+              className='border-1 w-20 m-8'
+              onClick={() => {
+                Inventory.setItem('w', 10)
+                Inventory.setItem('q', 10)
+              }}
+            >
+              w q set 0
+            </div>
+            <div
+              className='border-1 w-20 m-8'
+              onClick={() => Inventory.addItem('q', 1)}
+            >
+              q add 1
+            </div>
           </div>
         </div>
       </div>

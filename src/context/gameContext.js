@@ -5,8 +5,9 @@ import { Inventory } from "@/lib/mech/inventory";
 import { Equipment } from "@/lib/mech/equipment";
 import { Cooldown } from "@/lib/mech/cooldown";
 import { Planet } from "@/lib/mech/planet";
+import { Status } from '@/lib/mech/status'
 
-const GameContext = createContext();
+const GameContext = createContext()
 
 export const GameProvider = ({ children }) => {
   const [eventLog, setEventLog] = useState([])
@@ -22,11 +23,19 @@ export const GameProvider = ({ children }) => {
   Cooldown.setCooldownFunction(cooldowns, setCooldowns);
   Planet.setPlanetFunction(["earth", "venus", "sun", "moon", "asteroid belt", "black hole", "comet"], curPlanetKey, setCurPlanetKey);
 
+  const [status, setStatus] = useState({
+    hunger: 0,
+    oxygen: 10,
+    heat: 0
+  })
+  Status.setStatusFunction(status, setStatus)
+
+  //   const [playerStats, setPlayerStats] = useState({ health: 100 });
+
   return (
     <GameContext.Provider
       value={{
         eventLog,
-        // setGameLog,
         inventory,
         equipment,
         curPlanetKey,
@@ -34,11 +43,13 @@ export const GameProvider = ({ children }) => {
         // setInventory,
         // playerStats,
         // setPlayerStats
+        status
+        // playerStats
       }}
     >
       {children}
     </GameContext.Provider>
-  );
-};
+  )
+}
 
-export const useGameContext = () => useContext(GameContext);
+export const useGameContext = () => useContext(GameContext)
