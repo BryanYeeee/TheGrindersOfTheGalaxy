@@ -54,14 +54,14 @@ const CommandPanel = () => {
               <div className='relative'>
                 <motion.p
                   {...(cmdData.hover && {
-                      initial: { rotateY: 0, transition: { duration: 0.3 } },
+                      initial: { rotateX: 0, transition: { duration: 0.3 } },
                       variants: {
                         hover: {
-                          rotateY: -90,
+                          rotateX: 90,
                           transition: { duration: 0.3 }
                         }
                       },
-                      className: 'origin-left'
+                      className: 'origin-top'
                     })}
                 >
                   {cmdData.text}
@@ -69,14 +69,14 @@ const CommandPanel = () => {
 
                 {cmdData.hover && (
                   <motion.p
-                    initial={{ rotateY: 90, transition: { duration: 0.3 } }}
+                    initial={{ rotateX: -90, transition: { duration: 0.3 } }}
                     variants={{
                       hover: {
-                        rotateY: 0,
+                        rotateX: 0,
                         transition: { duration: 0.3 }
                       }
                     }}
-                    className='cmdTxt inset-0 origin-right'
+                    className='cmdTxt inset-0 origin-bottom'
                   >
                     {cmdData.hover}
                   </motion.p>

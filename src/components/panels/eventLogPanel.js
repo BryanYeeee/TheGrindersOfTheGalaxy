@@ -1,5 +1,6 @@
 import { useGameContext } from '@/context/gameContext'
 import { useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 
 const EventLogPanel = () => {
   const { eventLog } = useGameContext()
@@ -22,9 +23,17 @@ const EventLogPanel = () => {
       ref={panelRef}
       className='h-full w-full bg-foreground1 px-10 py-8 space-y-4'
     >
-      {eventLog.map((msg, i) => (
-        <div key={i}>{msg}</div>
-      ))}
+      <AnimatePresence>
+        {eventLog.map((msg, i) => (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.5 } }}
+            key={eventLog.length - i}
+          >
+            {msg}
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </div>
   )
 }
