@@ -22,7 +22,9 @@ const Main = () => {
               send to VENus
             </div>
           </div>
-          {/* <EquipmentPanel />
+        </div>
+        <div className='border-1 bg-foreground2 glow-border clip-t'>
+          <EquipmentPanel />
           <div className='flex gap-4'>
             <div
               className='border-1 w-20 m-8'
@@ -48,9 +50,7 @@ const Main = () => {
             >
               add sword
             </div>
-          </div> */}
-        </div>
-        <div className='border-1 bg-foreground2 glow-border clip-t'></div>
+          </div></div>
       </div>
 
       <div className='border-1 glow-border clip-l'>

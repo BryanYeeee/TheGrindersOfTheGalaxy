@@ -11,7 +11,7 @@ export const earthConfig = {
     commands: {
         'walk': {
             text: "take a step",
-            hover: "take the step please",
+            hover: "",
             click: "takeStep",
             cooldown: 750,
             cost: {
