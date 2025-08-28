@@ -39,10 +39,10 @@ body {
   font-family: monospace
 }
 
-.corner-clip::before {
+.clip-corner1::before {
   clip-path: polygon(25% 0, 100% 0, 100% 75%, 75% 100%, 0 100%, 0 25%);
 }
-.corner-clip2::before {
+.clip-corner2::before {
   clip-path: polygon(0 0, 75% 0%, 100% 25%, 100% 100%, 25% 100%, 0% 75%);
 }
 .clip-t::before {

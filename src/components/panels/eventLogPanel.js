@@ -21,7 +21,7 @@ const EventLogPanel = () => {
   return (
     <div
       ref={panelRef}
-      className='h-full w-full bg-foreground1 px-10 py-8 space-y-4'
+      className='h-full w-full px-10 py-8 space-y-4'
     >
       <AnimatePresence>
         {eventLog.map((msg, i) => (

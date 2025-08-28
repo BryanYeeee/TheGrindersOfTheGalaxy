@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 // Panels
 import InventoryPanel from '@/components/panels/inventoryPanel'
 import EquipmentPanel from '@/components/panels/equipmentPanel'
@@ -7,77 +9,87 @@ import CommandPanel from '@/components/panels/commandPanel'
 import { Inventory } from '@/lib/mech/inventory'
 import { Equipment } from '@/lib/mech/equipment'
 import { Planet } from '@/lib/mech/planet'
+import Panel from '../panels/panel'
 
 const Main = () => {
+  const [sidePanel, setSidePanel] = useState('inventory')
+
   return (
     <div className='h-full w-full grid grid-rows-1 grid-cols-[3fr_1fr] gap-12 py-8'>
       <div className='h-full grid grid-rows-[1fr_1fr] grid-cols-1 gap-12'>
-        <div className='border-1 bg-foreground2 glow-border clip-b'>
+        <Panel clip={'b'} bgCol={2}>
           <CommandPanel />
-          <div className='flex gap-4'>
-            <div
-              className='border-1 w-20 m-8'
-              onClick={() => Planet.setCurPlanet("venus")}
-            >
-              send to VENus
-            </div>
-          </div>
-        </div>
-        <div className='border-1 bg-foreground2 glow-border clip-t'>
-          <EquipmentPanel />
-          <div className='flex gap-4'>
-            <div
-              className='border-1 w-20 m-8'
-              onClick={() =>
-                Equipment.addEquipment('pickaxe', { name: 'aaa', speed: 1 })
-              }
-            >
-              add speed 1pick
-            </div>
-            <div
-              className='border-1 w-20 m-8'
-              onClick={() =>
-                Equipment.addEquipment('pickaxe', { name: 'bbb', speed: 2 })
-              }
-            >
-              add speed 2pick
-            </div>
-            <div
-              className='border-1 w-20 m-8'
-              onClick={() =>
-                Equipment.addEquipment('sword', { name: 'ccc', dmg: 20 })
-              }
-            >
-              add sword
-            </div>
-          </div></div>
+        </Panel>
+        <Panel clip={'t'} bgCol={2}></Panel>
       </div>
-
-      <div className='border-1 glow-border clip-l'>
-        <InventoryPanel />
-        <div className='flex flex-col'>
-          <div
-            className='border-1'
-            onClick={() => Inventory.addItem('steps', 1)}
-          >
-            steps add 1
-          </div>
-          <div
-            className='border-1'
-            onClick={() => {
-              Inventory.setItem('steps', 10)
-              Inventory.setItem('stones', 10)
-            }}
-          >
-            both set 10
-          </div>
-          <div
-            className='border-1'
-            onClick={() => Inventory.addItem('stones', 1)}
-          >
-            stones add 1
-          </div>
-        </div>
+      <div className='relative h-full'>
+        <AnimatePresence>
+          {sidePanel === 'inventory' ? (
+            <motion.div
+              key={sidePanel}
+              className='size-full absolute top-0'
+              initial={{ y: '-100%', top: '-3rem', opacity: 0 }}
+              animate={{
+                y: 0,
+                top: 0,
+                opacity: 1,
+                transition: { duration: 1 }
+              }}
+              exit={{
+                y: '-100%',
+                top: '-3rem',
+                opacity: 0,
+                transition: { duration: 1 }
+              }}
+            >
+              <Panel clip={'l'} bgCol={1}>
+                <InventoryPanel />
+                <div
+                  className='border-1'
+                  onClick={() =>
+                    setSidePanel(
+                      sidePanel === 'inventory' ? 'equipment' : 'inventory'
+                    )
+                  }
+                >
+                  change panel
+                </div>
+              </Panel>
+            </motion.div>
+          ) : (
+            <motion.div
+              key={sidePanel}
+              className='size-full absolute '
+              initial={{ y: '100%', top: '3rem', opacity: 0 }}
+              animate={{
+                y: 0,
+                top: 0,
+                opacity: 1,
+                transition: { duration: 1 }
+              }}
+              exit={{
+                y: '100%',
+                top: '3rem',
+                opacity: 0,
+                transition: { duration: 1 }
+              }}
+            >
+              <Panel clip={'l'} bgCol={1}>
+                <EquipmentPanel />
+                <div
+                  className='border-1'
+                  onClick={() =>
+                    setSidePanel(
+                      sidePanel === 'inventory' ? 'equipment' : 'inventory'
+                    )
+                  }
+                >
+                  change panel
+                </div>
+              </Panel>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   )

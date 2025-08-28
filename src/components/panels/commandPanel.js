@@ -42,7 +42,7 @@ const CommandPanel = () => {
         <AnimatePresence>
           {Object.entries(config.commands).map(([cmd, cmdData]) => (
             <motion.button
-              key={cmd}
+              key={curPlanetKey+cmd}
               title={cmdData.hover}
               onClick={e => startCooldown(e, cmd, cmdData)}
               disabled={cooldowns[cmd] === true}

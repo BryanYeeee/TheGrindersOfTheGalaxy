@@ -17,7 +17,7 @@ const InventoryItem = memo(({ name, count }) => {
   return (
     <div className='flex justify-between px-2 mb-1 border-1 border-[#ffac2230]'>
       <div>{name}</div>
-      <div>{count}</div> 
+      <div>{count}</div>
     </div>
   )
 })

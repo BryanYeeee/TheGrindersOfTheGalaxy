@@ -6,6 +6,8 @@ import EventLogPanel from '@/components/panels/eventLogPanel'
 import { EventLog } from '@/lib/mech/eventLog'
 import StatusPanel from '@/components/panels/statusPanel'
 import { Status } from '@/lib/mech/status'
+import CheatScreen from '@/components/cheatScreen'
+import Panel from '@/components/panels/panel'
 
 const Game = () => {
   const currentScreen = <Main />
@@ -13,40 +15,26 @@ const Game = () => {
     <GameProvider className='relative'>
       <div className='absolute w-screen h-screen bg -z-10' />
       <div className='min-h-150 h-screen w-full grid grid-cols-[1fr_5fr_20%] grid-rows-1 gap-12 p-12'>
-        <div className='border-1 glow-border corner-clip2'>
+        <Panel clip={'corner2'} bgCol={1}>
           <StatusPanel />
-          <div
-            className='border-1 w-full'
-            onClick={() => Status.addStatus('hunger', 10)}
-          >
-            add hunger
-          </div>
-          <div
-            className='border-1 w-full'
-            onClick={() => Status.addStatus('oxygen', 10)}
-          >
-            add oxygen
-          </div>
-          <div
-            className='border-1 w-full'
-            onClick={() => Status.addStatus('heat', 10)}
-          >
-            add heat
-          </div>
-        </div>
+        </Panel>
 
         <div className=''>{currentScreen}</div>
-
-        <div className='glow-border corner-clip'>
+        
+        <Panel clip={'corner1'} bgCol={1}>
           <EventLogPanel />
           <div
             className='border-1'
-            onClick={() => EventLog.addEvent(Math.floor(Math.random() * (100+ 1)))}
+            onClick={() =>
+              EventLog.addEvent(Math.floor(Math.random() * (100 + 1)))
+            }
           >
             add something to log
           </div>
-        </div>
+        </Panel>
       </div>
+
+      <CheatScreen />
     </GameProvider>
   )
 }
