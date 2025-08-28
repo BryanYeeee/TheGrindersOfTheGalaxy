@@ -37,38 +37,84 @@ const CheatScreen = () => {
     ]
   ]
   return (
-    <div className='fixed top-0 left-0 w-60 z-10 rounded border-1 m-2'>
-      <div className='w-full opacity-80 bg-[#00000035] flex justify-between py-1 px-8 font-white'>
-        CHEAT MENU
-        <div
-          className='w-10 border-1 flex justify-center'
-          onClick={() => setToggle(!toggle)}
-        >
-          {toggle ? 'on' : 'off'}
+    <DraggableDiv initialX={10} initialY={-600}>
+      <div className='w-60 z-10 rounded border-1 m-2'>
+        <div className='w-full opacity-80 bg-[#00000035] flex justify-between py-1 px-8 font-white'>
+          CHEAT MENU
+          <div
+            className='w-10 border-1 flex justify-center'
+            onClick={() => setToggle(!toggle)}
+          >
+            {toggle ? 'on' : 'off'}
+          </div>
         </div>
+        {toggle && (
+          <div className='opacity-90 w-full bg-black border-amber-300 border-1 space-y-4 p-2'>
+            {cheats.map((section, sectionIndex) => (
+              <div
+                key={sectionIndex}
+                className='space-y-2 border-b border-gray-500 pb-2'
+              >
+                {section.map(([label, action], index) => (
+                  <div
+                    key={index}
+                    className='border-1 cursor-pointer px-2 py-1 hover:bg-gray-700'
+                    onClick={action}
+                  >
+                    {label}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-      {toggle && (
-        <div className='opacity-90 w-full bg-black border-amber-300 border-1 space-y-4 p-2'>
-          {cheats.map((section, sectionIndex) => (
-            <div
-              key={sectionIndex}
-              className='space-y-2 border-b border-gray-500 pb-2'
-            >
-              {section.map(([label, action], index) => (
-                <div
-                  key={index}
-                  className='border-1 cursor-pointer px-2 py-1 hover:bg-gray-700'
-                  onClick={action}
-                >
-                  {label}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+    </DraggableDiv>
   )
 }
 
 export default CheatScreen
+
+const DraggableDiv = ({ children, initialX, initialY }) => {
+  const [pos, setPos] = useState({ x: initialX, y: initialY })
+  const [dragging, setDragging] = useState(false)
+  const [offset, setOffset] = useState({ x: 0, y: 0 })
+
+  const onMouseDown = e => {
+    setDragging(true)
+    setOffset({
+      x: e.clientX - pos.x,
+      y: e.clientY - pos.y
+    })
+  }
+
+  const onMouseMove = e => {
+    if (dragging) {
+      setPos({ x: e.clientX - offset.x, y: e.clientY - offset.y })
+    }
+  }
+
+  const onMouseUp = () => setDragging(false)
+
+  return (
+    <div
+      onMouseMove={onMouseMove}
+      onMouseUp={onMouseUp}
+      onMouseLeave={onMouseUp}
+      style={{ width: '0', height: '0', position: 'relative' }}
+      className='absolute top-0'
+    >
+      <div
+        onMouseDown={onMouseDown}
+        style={{
+          position: 'absolute',
+          left: pos.x,
+          top: pos.y,
+          cursor: 'grab'
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  )
+}
