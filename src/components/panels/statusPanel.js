@@ -3,7 +3,7 @@ import { useGameContext } from "@/context/gameContext";
 const StatusPanel = () => {
     const { status } = useGameContext()
 
-    return ( <div className="h-full w-full">
+    return ( <div className="h-full p-8">
         <div>Hunger: {status.hunger}</div>
         <div>Oxygen: {status.oxygen}</div>
         <div>Heat: {status.heat}</div>

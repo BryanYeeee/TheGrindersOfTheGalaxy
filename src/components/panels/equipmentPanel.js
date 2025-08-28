@@ -6,7 +6,7 @@ const EquipmentPanel = () => {
 
   return (
     <div
-      className='h-full bg-foreground1 p-8'
+      className='h-full p-8'
     >
       {/* {Object.entries(inventory).map(([name, count]) => (
         <InventoryItem key={name} name={name} count={count} />

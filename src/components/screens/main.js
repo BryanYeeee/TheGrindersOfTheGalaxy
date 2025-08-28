@@ -13,8 +13,8 @@ import Panel from '@/components/panels/panel'
 import Switcher from '@/components/switcher'
 
 const Main = () => {
-  // const [sidePanel, setSidePanel] = useState('inventory')
   const [sidePanelIndex, setSidePanelIndex] = useState(0)
+  const [bottomPanelIndex, setBottomPanel] = useState(0)
 
   return (
     <div className='h-full w-full grid grid-rows-1 grid-cols-[3fr_1fr] gap-12 py-8'>
@@ -23,18 +23,39 @@ const Main = () => {
           <CommandPanel />
         </Panel>
         <Panel clip={'t'} bgCol={2}>
-
-          
-            <button className='border-1 w-10'onClick={() => setSidePanelIndex((sidePanelIndex+1)%3)}>
-              +1
-            </button>
-            <button className='border-1 w-10'onClick={() => setSidePanelIndex(Math.abs(sidePanelIndex-1) %3)}>
-              -1
-            </button>
+          <div className='size-full overflow-x-hidden'>
+          <Switcher activeIndex={bottomPanelIndex} axis='x'>
+            {[<InventoryPanel />, <EquipmentPanel />]}
+          </Switcher>
+          </div>
+          <button
+            className='border-1 w-10'
+            onClick={() => setSidePanelIndex((sidePanelIndex + 1) % 3)}
+          >
+            +1
+          </button>
+          <button
+            className='border-1 w-10'
+            onClick={() => setSidePanelIndex(Math.abs(sidePanelIndex - 1) % 3)}
+          >
+            -1
+          </button>
+          <button
+            className='border-1 w-10'
+            onClick={() => setBottomPanel((bottomPanelIndex + 1) % 2)}
+          >
+            +1
+          </button>
+          <button
+            className='border-1 w-10'
+            onClick={() => setBottomPanel(Math.abs(bottomPanelIndex - 1) % 2)}
+          >
+            -1
+          </button>
         </Panel>
       </div>
 
-      <Switcher activeIndex={sidePanelIndex}>
+      <Switcher activeIndex={sidePanelIndex} axis='y'>
         {[
           <Panel clip='l' bgCol={1}>
             <InventoryPanel />

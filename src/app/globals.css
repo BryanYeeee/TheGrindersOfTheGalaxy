@@ -58,7 +58,7 @@ body {
 .glow-border {
   position: relative;
   border: 1px solid var(--accent);
-  box-shadow: 0 0 10px var(--accent); /* Neon glow */
+  box-shadow: 0 0 10px var(--accent);
 }
 
 .glow-border::before {
@@ -69,7 +69,7 @@ body {
   right: -10px;
   bottom: -10px;
   border: 2px solid var(--accent);
-  box-shadow: 0 0 10px var(--accent); /* Neon glow */
+  box-shadow: 0 0 10px var(--accent);
   z-index: -1;
 }
 
