@@ -1,5 +1,4 @@
-// GameContext.jsx
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { EventLog } from "@/lib/mech/eventLog";
 import { Inventory } from "@/lib/mech/inventory";
 import { Equipment } from "@/lib/mech/equipment";
@@ -10,22 +9,22 @@ import { Status } from '@/lib/mech/status'
 const GameContext = createContext()
 
 export const GameProvider = ({ children }) => {
-  const [eventLog, setEventLog] = useState([])
-  const [curPlanetKey, setCurPlanetKey] = useState("earth");
-  const [cooldowns, setCooldowns] = useState({});
 //   const [playerStats, setPlayerStats] = useState({ steps: 0, health: 100 });
-
+  const [eventLog, setEventLog] = useState([])
   EventLog.setLogFunction(setEventLog)
+
+  const [curPlanetKey, setCurPlanetKey] = useState("earth");
+  Planet.setPlanetFunction(["earth", "venus", "sun", "moon", "asteroid belt", "black hole", "comet"], curPlanetKey, setCurPlanetKey);
+
+
+  const [cooldowns, setCooldowns] = useState({});
+  Cooldown.setCooldownFunction(cooldowns, setCooldowns);
 
   const [inventory, setInventory] = useState({})
   Inventory.setInvFunction(inventory, setInventory)
 
   const [equipment, setEquipment] = useState({})
   Equipment.setEquipFunction(equipment, setEquipment)
-  Cooldown.setCooldownFunction(cooldowns, setCooldowns);
-  Planet.setPlanetFunction(["earth", "venus", "sun", "moon", "asteroid belt", "black hole", "comet"], curPlanetKey, setCurPlanetKey);
-
-  //   const [playerStats, setPlayerStats] = useState({ health: 100 });
 
   const [status, setStatus] = useState({
     hunger: 0,
@@ -33,8 +32,6 @@ export const GameProvider = ({ children }) => {
     heat: 0
   })
   Status.setStatusFunction(status, setStatus)
-
-  //   const [playerStats, setPlayerStats] = useState({ health: 100 });
 
   return (
     <GameContext.Provider
@@ -44,11 +41,7 @@ export const GameProvider = ({ children }) => {
         equipment,
         curPlanetKey,
         cooldowns,
-        // setInventory,
-        // playerStats,
-        // setPlayerStats
         status
-        // playerStats
       }}
     >
       {children}

@@ -1,16 +1,11 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
-// Panels
+
+import Switcher from '@/components/switcher'
+import Panel from '@/components/panels/panel'
+
 import InventoryPanel from '@/components/panels/inventoryPanel'
 import EquipmentPanel from '@/components/panels/equipmentPanel'
 import CommandPanel from '@/components/panels/commandPanel'
-
-// Mechs
-import { Inventory } from '@/lib/mech/inventory'
-import { Equipment } from '@/lib/mech/equipment'
-import { Planet } from '@/lib/mech/planet'
-import Panel from '@/components/panels/panel'
-import Switcher from '@/components/switcher'
 
 const Main = () => {
   const [sidePanelIndex, setSidePanelIndex] = useState(0)
@@ -68,77 +63,6 @@ const Main = () => {
           </Panel>
         ]}
       </Switcher>
-
-      {/* <div className='relative h-full'>
-        <AnimatePresence>
-          {sidePanel === 'inventory' ? (
-            <motion.div
-              key={sidePanel}
-              className='size-full absolute'
-              initial={{ y: '-100%', top: '-3rem', opacity: 0,
-                transition: { duration: 1 } }}
-              animate={{
-                y: 0,
-                top: 0,
-                opacity: 1,
-                transition: { duration: 1 }
-              }}
-              exit={{
-                y: '-100%',
-                top: '-3rem',
-                opacity: 0,
-                transition: { duration: 1 }
-              }}
-            >
-              <Panel clip={'l'} bgCol={1}>
-                <InventoryPanel />
-                <div
-                  className='border-1'
-                  onClick={() =>
-                    setSidePanel(
-                      sidePanel === 'inventory' ? 'equipment' : 'inventory'
-                    )
-                  }
-                >
-                  change panel
-                </div>
-              </Panel>
-            </motion.div>
-          ) : (
-            <motion.div
-              key={sidePanel}
-              className='size-full absolute '
-              initial={{ y: '100%', top: '3rem', opacity: 0 }}
-              animate={{
-                y: 0,
-                top: 0,
-                opacity: 1,
-                transition: { duration: 1 }
-              }}
-              exit={{
-                y: '100%',
-                top: '3rem',
-                opacity: 0,
-                transition: { duration: 1 }
-              }}
-            >
-              <Panel clip={'l'} bgCol={1}>
-                <EquipmentPanel />
-                <div
-                  className='border-1'
-                  onClick={() =>
-                    setSidePanel(
-                      sidePanel === 'inventory' ? 'equipment' : 'inventory'
-                    )
-                  }
-                >
-                  change panel
-                </div>
-              </Panel>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div> */}
     </div>
   )
 }
