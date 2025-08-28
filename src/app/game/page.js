@@ -3,9 +3,7 @@ import Main from '@/components/screens/main'
 import { GameProvider } from '@/context/gameContext'
 
 import EventLogPanel from '@/components/panels/eventLogPanel'
-import { EventLog } from '@/lib/mech/eventLog'
 import StatusPanel from '@/components/panels/statusPanel'
-import { Status } from '@/lib/mech/status'
 import CheatScreen from '@/components/cheatScreen'
 import Panel from '@/components/panels/panel'
 
@@ -20,17 +18,9 @@ const Game = () => {
         </Panel>
 
         <div className=''>{currentScreen}</div>
-        
+
         <Panel clip={'corner1'} bgCol={1}>
           <EventLogPanel />
-          <div
-            className='border-1'
-            onClick={() =>
-              EventLog.addEvent(Math.floor(Math.random() * (100 + 1)))
-            }
-          >
-            add something to log
-          </div>
         </Panel>
       </div>
 
