@@ -65,69 +65,6 @@ const CheatScreen = () => {
               ))}
             </div>
           ))}
-          {/* <div className='flex'>
-            <div
-              className='border-1'
-              onClick={() => Planet.setCurPlanet('venus')}
-            >
-              send to VENus
-            </div>
-          </div>
-          <div
-            className='border-1'
-            onClick={() =>
-              EventLog.addEvent(Math.floor(Math.random() * (100 + 1)))
-            }
-          >
-            add something to log
-          </div>
-          <div
-            className='border-1'
-            onClick={() =>
-              Equipment.addEquipment('pickaxe', { name: 'aaa', speed: 1 })
-            }
-          >
-            add speed 1pick
-          </div>
-          <div
-            className='border-1'
-            onClick={() =>
-              Equipment.addEquipment('pickaxe', { name: 'bbb', speed: 2 })
-            }
-          >
-            add speed 2pick
-          </div>
-          <div
-            className='border-1'
-            onClick={() =>
-              Equipment.addEquipment('sword', { name: 'ccc', dmg: 20 })
-            }
-          >
-            add sword
-          </div>
-          <div className='flex flex-col'>
-            <div
-              className='border-1'
-              onClick={() => Inventory.addItem('steps', 1)}
-            >
-              steps add 1
-            </div>
-            <div
-              className='border-1'
-              onClick={() => {
-                Inventory.setItem('steps', 10)
-                Inventory.setItem('stones', 10)
-              }}
-            >
-              both set 10
-            </div>
-            <div
-              className='border-1'
-              onClick={() => Inventory.addItem(Math.random(), 1)}
-            >
-              stones add 1
-            </div>
-          </div> */}
         </div>
       )}
     </div>
