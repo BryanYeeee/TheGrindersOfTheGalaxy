@@ -24,7 +24,7 @@ const Main = () => {
           <PlanetPanel />
         </Panel>
         <Panel clip={'t'} bgCol={2}>
-
+          <CommandPanel />
           
             <button className='border-1 w-10'onClick={() => setSidePanelIndex((sidePanelIndex+1)%3)}>
               +1

@@ -13,16 +13,16 @@ const PlanetPanel = () => {
     return (
         <>
             <div className='flex h-full w-full p-2'>
-                <div className='w-2/3 h-full border'>
-                    <PlanetRender fileName={config.src} />
-                </div>
-                {config.name}
                 <div className='mb-2'>
+                     <div>{config.name}</div>
                     {Object.entries(config.stats).map(([stat, value]) => (
                         <div key={stat}>
                             {stat}: {value}
                         </div>
                     ))}
+                </div>
+                 <div className='w-2/3 h-full border'>
+                    <PlanetRender key={config.src} fileName={config.src} />
                 </div>
             </div>
         </>

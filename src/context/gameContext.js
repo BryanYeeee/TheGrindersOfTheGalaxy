@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 import { EventLog } from "@/lib/mech/eventLog";
 import { Inventory } from "@/lib/mech/inventory";
 import { Equipment } from "@/lib/mech/equipment";
-import { Cooldown } from "@/lib/mech/cooldown";
+import { Command } from "@/lib/mech/command";
 import { Planet } from "@/lib/mech/planet";
 import { Status } from '@/lib/mech/status'
 
@@ -13,6 +13,7 @@ export const GameProvider = ({ children }) => {
   const [eventLog, setEventLog] = useState([])
   const [curPlanetKey, setCurPlanetKey] = useState("earth");
   const [cooldowns, setCooldowns] = useState({});
+  const [unlocks, setUnlocks] = useState({}); 
 //   const [playerStats, setPlayerStats] = useState({ steps: 0, health: 100 });
 
   EventLog.setLogFunction(setEventLog)
@@ -22,7 +23,10 @@ export const GameProvider = ({ children }) => {
 
   const [equipment, setEquipment] = useState({})
   Equipment.setEquipFunction(equipment, setEquipment)
-  Cooldown.setCooldownFunction(cooldowns, setCooldowns);
+
+
+  Command.setCooldownFunction(cooldowns, setCooldowns);
+  Command.setUnlockFunction(unlocks, setUnlocks);
   Planet.setPlanetFunction(["earth", "venus", "sun", "moon", "asteroid belt", "black hole", "comet"], curPlanetKey, setCurPlanetKey);
 
   //   const [playerStats, setPlayerStats] = useState({ health: 100 });
@@ -44,6 +48,7 @@ export const GameProvider = ({ children }) => {
         equipment,
         curPlanetKey,
         cooldowns,
+        unlocks,
         // setInventory,
         // playerStats,
         // setPlayerStats

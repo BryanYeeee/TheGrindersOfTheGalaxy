@@ -11,41 +11,37 @@ export const PlanetRender = ({ fileName }) => {
     const containerRef = useRef()
 
     useEffect(() => {
+        if (typeof window === 'undefined') return
         if (!containerRef.current) return;
 
         let camera, scene, renderer, composer;
         let planet = null;
         let outlinePass;
-        let tempObserver
-        let observer
-
-        let refWidth = containerRef.current.offsetWidth;
-        let refHeight = containerRef.current.offsetHeight;
+        let drag
+        let lastX = 0, lastY = 0
+        let rotationSpeed = 0.01
+        let rotateCooldown = -1;
+        let maxRotateCooldown = 100;
 
         let gradientMap;
 
-        const raycaster = new THREE.Raycaster();
-        const mouse = new THREE.Vector2();
 
         let animationId;
 
-        if (refWidth > 0 && refHeight > 0) {
-            init(refWidth, refHeight);
-            animate();
-        } else {
-            tempObserver = new ResizeObserver(() => {
-                refWidth = containerRef.current.offsetWidth;
-                refHeight = containerRef.current.offsetHeight;
-                if (refWidth > 0 && refHeight > 0) {
-                    tempObserver.disconnect();
-                    init(refWidth, refHeight);
-                    animate();
+        const observer = new ResizeObserver((entries) => { // ???
+            for (const entry of entries) {
+                const { width, height } = entry.contentRect;
+                if (width > 0 && height > 0) {
+                    if (!renderer) {
+                        init(width, height);
+                        animate();
+                    } else {
+                        resize(width, height);
+                    }
                 }
-            });
-            tempObserver.observe(containerRef.current);
-        }
-
-
+            }
+        });
+        observer.observe(containerRef.current);
 
         function init(width, height) {
             scene = new THREE.Scene();
@@ -71,7 +67,7 @@ export const PlanetRender = ({ fileName }) => {
                 scene,
                 camera
             );
-            outlinePass.edgeStrength = 10.0;
+            outlinePass.edgeStrength = 9.0;
             outlinePass.edgeGlow = 0.0;
             outlinePass.edgeThickness = 1.0;
             outlinePass.visibleEdgeColor.set("#ED6A5A"); // outline color
@@ -93,27 +89,16 @@ export const PlanetRender = ({ fileName }) => {
 
             loadModel();
 
-            
-
-            let resizeTimeout;
-            observer = new ResizeObserver(() => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    const newWidth = containerRef.current.clientWidth;
-                    const newHeight = containerRef.current.clientHeight;
-                    renderer.setSize(newWidth, newHeight);
-                    camera.aspect = newWidth / newHeight;
-                    composer.setSize(newWidth, newHeight);
-                    camera.updateProjectionMatrix();
-                }, 1);
-            });
-            observer.observe(containerRef.current);
+            renderer.domElement.addEventListener("pointerdown", onMouseDown)
+            window.addEventListener("pointermove", onMouseMove)
+            window.addEventListener("pointerup", onMouseUp)
         }
 
         function loadModel() {
             const loader = new GLTFLoader();
             if (!fileName) {
                 console.log("no fiel prob error");
+                return
             }
             loader.load(
                 fileName,
@@ -158,23 +143,72 @@ export const PlanetRender = ({ fileName }) => {
         function animate() {
             animationId = requestAnimationFrame(animate)
 
-            if (planet) {
+            rotateCooldown-=1;//abysmal coding
+            if(drag){
+                rotateCooldown = maxRotateCooldown
+            }
+            if (planet && rotateCooldown < 0) {
                 planet.rotation.y += 0.005;
             }
 
             composer.render();
         }
 
+        function onMouseDown(e) {
+            if(!planet) return
+            drag = true
+            lastX = e.clientX
+            lastY = e.clientY
+        }
+
+        function onMouseUp() {
+            if(!planet) return
+            drag = false
+        }
+
+        function onMouseMove(e) {
+            if (!drag || !planet) return
+            const dX = e.clientX - lastX
+            const dY = e.clientY - lastY
+
+            lastX = e.clientX
+            lastY = e.clientY
+
+            const qX = new THREE.Quaternion()
+            const qY = new THREE.Quaternion()
+
+            const cameraRight = new THREE.Vector3();
+            camera.getWorldDirection(cameraRight);
+            cameraRight.cross(camera.up).normalize();
+            qX.setFromAxisAngle(cameraRight, dY * rotationSpeed);
+
+            qY.setFromAxisAngle(new THREE.Vector3(0, 1, 0), dX * rotationSpeed)
+
+            planet.quaternion.multiplyQuaternions(qX, planet.quaternion)
+            planet.quaternion.multiplyQuaternions(qY, planet.quaternion)
+        }
+
+        const resize = (width, height) => {
+            renderer.setSize(width, height);
+            composer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            outlinePass.setSize(width, height);
+        }
+
         return () => {
             if (observer) observer.disconnect();
             composer?.dispose();
             outlinePass?.dispose();
+            renderer.domElement.removeEventListener("pointerdown", onMouseDown);
+            window.removeEventListener("pointermove", onMouseMove);
+            window.removeEventListener("pointerup", onMouseUp);
             cancelAnimationFrame(animationId);
             if (renderer && containerRef.current) {
                 renderer.dispose();
                 containerRef.current.removeChild(renderer.domElement);
             }
-            scene.clear();
+            scene?.clear();
 
         };
     }, [fileName]);

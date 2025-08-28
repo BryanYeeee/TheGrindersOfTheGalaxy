@@ -2,9 +2,10 @@
 import { EventLog } from "@/lib/mech/eventLog";
 import { Inventory } from "@/lib/mech/inventory";
 import { Equipment } from "@/lib/mech/equipment";
+import { Command } from "@/lib/mech/command";
 
 
-export const commandUtils = (config) => {
+export const commandUtils = () => {
 
     const useCost = (cost) => {
         let costTxt = "";

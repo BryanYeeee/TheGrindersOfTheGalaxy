@@ -6,11 +6,16 @@ import { Equipment } from '@/lib/mech/equipment'
 import { Planet } from '@/lib/mech/planet'
 import { Status } from '@/lib/mech/status'
 import { EventLog } from '@/lib/mech/eventLog'
+import { Command } from '@/lib/mech/command'
 
 const CheatScreen = () => {
   const [toggle, setToggle] = useState(true)
   const cheats = [
     [['send to VENus', () => Planet.setCurPlanet('venus')]],
+    [
+      ['unlock step', () => Command.unlockCommand('walk')],
+      ['unlock stone', () => Command.unlockCommand('stone')]
+    ],
     [['random log', () => EventLog.addEvent(Math.floor(Math.random() * 101))]],
     [
       [
