@@ -200,7 +200,7 @@ export const PlanetRender = ({ fileName }) => {
             if (observer) observer.disconnect();
             composer?.dispose();
             outlinePass?.dispose();
-            renderer.domElement.removeEventListener("pointerdown", onMouseDown);
+            if (renderer?.domElement) renderer.domElement.removeEventListener("pointerdown", onMouseDown)
             window.removeEventListener("pointermove", onMouseMove);
             window.removeEventListener("pointerup", onMouseUp);
             cancelAnimationFrame(animationId);
