@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Cooldown } from '@/lib/mech/cooldown'
+import { Cooldown } from '@/lib/mech/mechExport'
 import { useRef } from 'react'
 
 const CommandButton = ({ cmd, cmdData, onCooldown, runCommand }) => {

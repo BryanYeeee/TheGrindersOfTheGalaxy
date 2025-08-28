@@ -1,39 +1,34 @@
 import { useState } from 'react'
 
-// Mechs
-import { Inventory } from '@/lib/mech/inventory'
-import { Equipment } from '@/lib/mech/equipment'
-import { Planet } from '@/lib/mech/planet'
-import { Status } from '@/lib/mech/status'
-import { EventLog } from '@/lib/mech/eventLog'
+import * as Mech from '@/lib/mech/mechExport.js';
 
 const CheatScreen = () => {
   const [toggle, setToggle] = useState(true)
   const cheats = [
-    [['send to VENus', () => Planet.setCurPlanet('venus')]],
-    [['random log', () => EventLog.addEvent(Math.floor(Math.random() * 101))]],
+    [['send to VENus', () => Mech.Planet.setCurPlanet('venus')]],
+    [['random log', () => Mech.EventLog.addEvent(Math.floor(Math.random() * 101))]],
     [
       [
         '+speed 1 pick',
-        () => Equipment.addEquipment('pickaxe', { name: 'aaa', speed: 1 })
+        () => Mech.Equipment.addEquipment('pickaxe', { name: 'aaa', speed: 1 })
       ],
       [
         '+speed 2 pick',
-        () => Equipment.addEquipment('pickaxe', { name: 'bbb', speed: 2 })
+        () => Mech.Equipment.addEquipment('pickaxe', { name: 'bbb', speed: 2 })
       ],
       [
         '+dmg 20 sword',
-        () => Equipment.addEquipment('sword', { name: 'ccc', dmg: 20 })
+        () => Mech.Equipment.addEquipment('sword', { name: 'ccc', dmg: 20 })
       ]
     ],
     [
-      ['+1 step', () => Inventory.addItem('steps', 1)],
-      ['+1 random', () => Inventory.addItem(Math.random().toFixed(2), 1)]
+      ['+1 step', () => Mech.Inventory.addItem('steps', 1)],
+      ['+1 random', () => Mech.Inventory.addItem(Math.random().toFixed(2), 1)]
     ],
     [
-      ['add hunger', () => Status.addStatus('hunger', 10)],
-      ['add heat', () => Status.addStatus('heat', 10)],
-      ['add oxygen', () => Status.addStatus('oxygen', 10)]
+      ['add hunger', () => Mech.Status.addStatus('hunger', 10)],
+      ['add heat', () => Mech.Status.addStatus('heat', 10)],
+      ['add oxygen', () => Mech.Status.addStatus('oxygen', 10)]
     ]
   ]
   return (
