@@ -21,9 +21,9 @@ const EventLogPanel = () => {
   return (
     <div
       ref={panelRef}
-      className='h-full w-full px-10 py-8 space-y-4'
+      className='h-full px-10 py-8 space-y-4'
     >
-      <AnimatePresence>
+      {/* <AnimatePresence> <<NEED THIS IF WANT EXIT ANIMATIONS*/}
         {eventLog.map((msg, i) => (
           <motion.div
             initial={{ opacity: 0 }}
@@ -33,7 +33,7 @@ const EventLogPanel = () => {
             {msg}
           </motion.div>
         ))}
-      </AnimatePresence>
+      {/* </AnimatePresence> */}
     </div>
   )
 }

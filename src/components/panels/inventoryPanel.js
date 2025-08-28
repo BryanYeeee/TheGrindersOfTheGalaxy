@@ -5,7 +5,7 @@ const InventoryPanel = () => {
   const { inventory } = useGameContext()
 
   return (
-    <div className='h-full bg-foreground1 p-8'>
+    <div className='h-full p-8 overflow-y-scroll'>
       {Object.entries(inventory).map(([name, count]) => (
         <InventoryItem key={name} name={name} count={count} />
       ))}

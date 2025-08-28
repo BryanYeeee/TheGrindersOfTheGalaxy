@@ -58,7 +58,7 @@ body {
 .glow-border {
   position: relative;
   border: 1px solid var(--accent);
-  box-shadow: 0 0 10px var(--accent); /* Neon glow */
+  box-shadow: 0 0 10px var(--accent);
 }
 
 .glow-border::before {
@@ -69,7 +69,7 @@ body {
   right: -10px;
   bottom: -10px;
   border: 2px solid var(--accent);
-  box-shadow: 0 0 10px var(--accent); /* Neon glow */
+  box-shadow: 0 0 10px var(--accent);
   z-index: -1;
 }
 
@@ -80,15 +80,3 @@ body {
   background-size: cover;
 }
 
-.cmdBtn {
-  @apply w-32 py-1 relative z-0 rounded
-}
-.cooldown-bar {
-  @apply absolute inset-0 h-full -z-1 bg-[var(--foreground1)]
-}
-.cmdBtn span:last-of-type {
-  @apply absolute inset-0 h-full w-full border-1 border-[var(--accent)]
-}
-.cmdTxt {
-  @apply absolute
-}
