@@ -9,10 +9,11 @@ import CommandPanel from '@/components/panels/commandPanel'
 import { Inventory } from '@/lib/mech/inventory'
 import { Equipment } from '@/lib/mech/equipment'
 import { Planet } from '@/lib/mech/planet'
-import Panel from '../panels/panel'
+import Panel, { PanelSwitcher } from '@/components/panels/panel'
 
 const Main = () => {
-  const [sidePanel, setSidePanel] = useState('inventory')
+  // const [sidePanel, setSidePanel] = useState('inventory')
+  const [sidePanelIndex, setSidePanelIndex] = useState(0)
 
   return (
     <div className='h-full w-full grid grid-rows-1 grid-cols-[3fr_1fr] gap-12 py-8'>
@@ -20,15 +21,40 @@ const Main = () => {
         <Panel clip={'b'} bgCol={2}>
           <CommandPanel />
         </Panel>
-        <Panel clip={'t'} bgCol={2}></Panel>
+        <Panel clip={'t'} bgCol={2}>
+
+          
+            <button className='border-1 w-10'onClick={() => setSidePanelIndex((sidePanelIndex+1)%3)}>
+              +1
+            </button>
+            <button className='border-1 w-10'onClick={() => setSidePanelIndex(Math.abs(sidePanelIndex-1) %3)}>
+              -1
+            </button>
+        </Panel>
       </div>
-      <div className='relative h-full'>
+
+      <PanelSwitcher activeIndex={sidePanelIndex}>
+        {[
+          <Panel clip='l' bgCol={1}>
+            <InventoryPanel />
+          </Panel>,
+          <Panel clip='l' bgCol={1}>
+            <EquipmentPanel />
+          </Panel>,
+          <Panel clip='l' bgCol={1}>
+            YOOOOOOOOOO
+          </Panel>
+        ]}
+      </PanelSwitcher>
+
+      {/* <div className='relative h-full'>
         <AnimatePresence>
           {sidePanel === 'inventory' ? (
             <motion.div
               key={sidePanel}
-              className='size-full absolute top-0'
-              initial={{ y: '-100%', top: '-3rem', opacity: 0 }}
+              className='size-full absolute'
+              initial={{ y: '-100%', top: '-3rem', opacity: 0,
+                transition: { duration: 1 } }}
               animate={{
                 y: 0,
                 top: 0,
@@ -90,7 +116,7 @@ const Main = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -13,7 +13,7 @@ const InventoryPanel = () => {
   )
 }
 const InventoryItem = memo(({ name, count }) => {
-  console.log(`Rendering ${name}`)
+  // console.log(`Rendering ${name}`)
   return (
     <div className='flex justify-between px-2 mb-1 border-1 border-[#ffac2230]'>
       <div>{name}</div>

@@ -8,7 +8,7 @@ import { Status } from '@/lib/mech/status'
 import { EventLog } from '@/lib/mech/eventLog'
 
 const CheatScreen = () => {
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(true)
   const cheats = [
     [['send to VENus', () => Planet.setCurPlanet('venus')]],
     [['random log', () => EventLog.addEvent(Math.floor(Math.random() * 101))]],
