@@ -11,6 +11,7 @@ import { Equipment } from '@/lib/mech/equipment'
 import { Planet } from '@/lib/mech/planet'
 import Panel from '@/components/panels/panel'
 import Switcher from '@/components/switcher'
+import PlanetPanel from '../panels/planetPanel'
 
 const Main = () => {
   // const [sidePanel, setSidePanel] = useState('inventory')
@@ -20,7 +21,7 @@ const Main = () => {
     <div className='h-full w-full grid grid-rows-1 grid-cols-[3fr_1fr] gap-12 py-8'>
       <div className='h-full grid grid-rows-[1fr_1fr] grid-cols-1 gap-12'>
         <Panel clip={'b'} bgCol={2}>
-          <CommandPanel />
+          <PlanetPanel />
         </Panel>
         <Panel clip={'t'} bgCol={2}>
 

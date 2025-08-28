@@ -1,7 +1,7 @@
 export const earthConfig = {
     name: "Earth",
     description: "you are here",
-    src: "earth.jpeg",
+    src: "alien.glb",
     stats: {
         hunger: 5,
         naturalheat: 0,
