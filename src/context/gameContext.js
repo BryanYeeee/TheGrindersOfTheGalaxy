@@ -9,8 +9,12 @@ export const GameProvider = ({ children }) => {
   const [eventLog, setEventLog] = useState([])
   Mech.EventLog.setLogFunction(setEventLog)
 
-  const [curPlanetKey, setCurPlanetKey] = useState("earth");
-  Mech.Planet.setPlanetFunction(["earth", "venus", "sun", "moon", "asteroid belt", "black hole", "comet"], curPlanetKey, setCurPlanetKey);
+  const [curPlanetKey, setCurPlanetKey] = useState("earth"); //this might be garbage, maybe some other way to store list of planets
+  const [curPlanets, setCurPlanets] = useState([]);
+  const [allPlanets, setAllPlanets] = useState(["earth", "venus", "mars"]) 
+  Mech.Planet.setPlanetFunction(curPlanetKey, setCurPlanetKey);
+  Mech.Planet.setAvailPlanets(curPlanets, setCurPlanets)
+  Mech.Planet.setAllPlanets(allPlanets, setAllPlanets)
 
 
   const [cooldowns, setCooldowns] = useState({});
@@ -39,6 +43,7 @@ export const GameProvider = ({ children }) => {
         inventory,
         equipment,
         curPlanetKey,
+        curPlanets,
         cooldowns,
         unlocks,
         // setInventory,

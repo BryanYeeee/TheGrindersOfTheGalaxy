@@ -1,5 +1,5 @@
 
-import { EventLog, Inventory, Equipment, Command } from "@/lib/mech/mechExport";
+import { EventLog, Inventory, Equipment } from "@/lib/mech/mechExport";
 
 
 export const commandUtils = () => {

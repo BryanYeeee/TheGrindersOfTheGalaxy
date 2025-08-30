@@ -6,7 +6,9 @@ import * as Mech from '@/lib/mech/mechExport.js';
 const CheatScreen = () => {
   const [toggle, setToggle] = useState(true)
   const cheats = [
-    [['send to VENus', () => Mech.Planet.setCurPlanet('venus')]],
+    [
+      ['unlock planet', () => Mech.Planet.unlockNextPlanet()],
+      ['send to VENus', () => Mech.Planet.setCurPlanet('venus')]],
     [
       ['unlock step', () => Mech.Command.unlockCommand('walk')],
       ['unlock stone', () => Mech.Command.unlockCommand('stone')]
@@ -38,7 +40,9 @@ const CheatScreen = () => {
   ]
   return (
     <DraggableDiv initialX={10} initialY={-600}>
-      <div className='w-60 z-10 rounded border-1 m-2'>
+      <div 
+        className='w-60 z-10 rounded border-1 m-2'
+        >
         <div className='w-full opacity-80 bg-[#00000035] flex justify-between py-1 px-8 font-white'>
           CHEAT MENU
           <div

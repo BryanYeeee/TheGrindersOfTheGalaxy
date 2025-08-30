@@ -3,7 +3,7 @@ import { useGameContext } from '@/context/gameContext'
 import { planets } from '@/lib/data/planet/planetExport'
 import { AnimatePresence } from 'motion/react'
 import { Command } from '@/lib/mech/mechExport'
-import CommandButton from '@/components/commandButton'
+import CommandButton from '@/components/menu/commandButton'
 
 const CommandPanel = () => {
   const { curPlanetKey, cooldowns } = useGameContext()
