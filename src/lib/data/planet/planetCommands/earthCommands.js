@@ -9,6 +9,21 @@ export const earthCommands = {
     return doActions(
       [
         'hello',
+        {
+          0: [
+            'first',
+            false,
+            false,
+            false,
+            false,
+            () => {
+              EventLog.addEvent('yay')
+            }
+          ],
+          2: [
+            'damn 2nd'
+          ]
+        },
         false,
         () => {
           EventLog.addEvent('custom eventlog here')

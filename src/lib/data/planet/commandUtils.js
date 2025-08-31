@@ -25,8 +25,21 @@ const useCost = cost => {
   return ''
 }
 
-export const commandUtils = (config) => {
-  const doActions = (actions, data = {}) => {
+const actionHandlers = {
+  boolean: (a, ctx) => Inventory.addItem('brh', 1), //for now
+  string: (txt, ctx) => EventLog.addEvent(txt),
+  function: async (fn, ctx) => fn(),
+  object: async (countActions, ctx) => {
+    let cmdCount = Count.getCount(ctx.config.key, ctx.data.cmd)
+    for (let a of countActions[cmdCount] ?? []) {
+      let handler = actionHandlers[typeof a]
+      if (handler) await handler(a, ctx)
+    }
+  }
+}
+
+export const commandUtils = config => {
+  const doActions = async (actions, data = {}) => {
     let costTxt = useCost(data.cmdData.cost)
     console.log(data)
     if (costTxt != '') {
@@ -34,12 +47,10 @@ export const commandUtils = (config) => {
       return false
     }
 
-    actions.forEach(a => {
-      if (typeof a === 'boolean') Inventory.addItem('brh', 1) // for now
-      if (typeof a === 'string') EventLog.addEvent(a)
-      if (typeof a === 'function') a()
-      if (typeof a === 'object') console.log('asd')
-    })
+    for (let a of actions) {
+      let handler = actionHandlers[typeof a]
+      if (handler) await handler(a, { config, data })
+    }
 
     Count.addCount(config.key, data.cmd)
     return true
