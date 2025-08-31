@@ -14,13 +14,10 @@ const CheatScreen = () => {
     [
       [
         'unlock all earth cmds',
-        () => {
-          Object.entries(planetConfigs['earth'].commands).map(
-            (cmd) => {
-              Mech.Command.unlockCommand('earth', cmd[0])
-            }
+        () =>
+          Object.keys(planetConfigs['earth'].commands).forEach(cmd =>
+            Mech.Command.unlockCommand('earth', cmd)
           )
-        }
       ],
       ['unlock venus step', () => Mech.Command.unlockCommand('venus', 'walk')],
       [
