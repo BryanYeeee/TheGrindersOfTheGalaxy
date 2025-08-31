@@ -4,6 +4,7 @@ import { Equipment } from "@/lib/mech/equipment";
 import { Command } from "@/lib/mech/command";
 import { Planet } from "@/lib/mech/planet";
 import { Status } from '@/lib/mech/status'
+import { Count } from "@/lib/mech/count";
 
 
 export {
@@ -12,5 +13,6 @@ export {
   Equipment,
   Command,
   Planet,
-  Status
+  Status,
+  Count
 }

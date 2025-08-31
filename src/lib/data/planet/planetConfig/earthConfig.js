@@ -1,5 +1,6 @@
 export const earthConfig = {
     name: "Earth",
+    key: "earth",
     description: "you are here",
     src: "alien.glb",
     stats: {

@@ -10,10 +10,6 @@ const CheatScreen = () => {
       ['unlock planet', () => Mech.Planet.unlockNextPlanet()],
       ['send to VENus', () => Mech.Planet.setCurPlanet('venus')]],
     [
-      ['send to Earth', () => Mech.Planet.setCurPlanet('earth')],
-      ['send to VENus', () => Mech.Planet.setCurPlanet('venus')]
-    ],
-    [
       ['unlock earth.step', () => Mech.Command.unlockCommand('earth', 'walk')],
       ['unlock venus step', () => Mech.Command.unlockCommand('venus', 'walk')],
       ['unlock earth stone', () => Mech.Command.unlockCommand('earth', 'earth.stone')],
@@ -23,7 +19,8 @@ const CheatScreen = () => {
       [
         'random log',
         () => Mech.EventLog.addEvent(Math.floor(Math.random() * 101))
-      ]
+      ],
+      ['log counts', () => Mech.EventLog.addEvent(JSON.stringify(Mech.Count.count))]
     ],
     [
       [

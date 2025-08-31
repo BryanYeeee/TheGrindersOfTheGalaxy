@@ -1,5 +1,6 @@
 export const venusConfig = {
     name: "venus",
+    key: "venus",
     description: "you are NOT here",
     src: "alien.glb",
     stats: {

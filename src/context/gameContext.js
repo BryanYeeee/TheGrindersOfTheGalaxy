@@ -29,6 +29,9 @@ export const GameProvider = ({ children }) => {
   const [equipment, setEquipment] = useState({})
   Mech.Equipment.setEquipFunction(equipment, setEquipment)
 
+  const [count, setCount] = useState({});
+  Mech.Count.setCountFunction(count, setCount)
+
   const [status, setStatus] = useState({
     hunger: 0,
     oxygen: 10,
@@ -46,6 +49,7 @@ export const GameProvider = ({ children }) => {
         curPlanets,
         cooldowns,
         unlocks,
+        count,
         // setInventory,
         // playerStats,
         // setPlayerStats
