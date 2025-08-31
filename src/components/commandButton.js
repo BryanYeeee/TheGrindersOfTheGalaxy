@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import { Command } from '@/lib/mech/mechExport'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 const CommandButton = ({ cmd, cmdData, onCooldown, runCommand }) => {
   const barRef = useRef()
@@ -10,6 +10,7 @@ const CommandButton = ({ cmd, cmdData, onCooldown, runCommand }) => {
 
     if (cmdData.cooldown) {
       Command.startCooldown(cmd, cmdData.cooldown)
+
       barRef.current.animate([{ width: '0%' }, { width: '100%' }], {
         duration: cmdData.cooldown,
         easing: 'linear'
@@ -37,6 +38,25 @@ const CommandButton = ({ cmd, cmdData, onCooldown, runCommand }) => {
       hover: { rotateX: 0, transition: { duration: 0.3, ease: 'linear' } }
     }
   }
+
+  useEffect(() => {
+    if (!Command.isOnCooldown(cmd)) return
+    let cdInfo = Command.getCooldownInfo(cmd)
+    if(!cdInfo || !cdInfo.active) return
+
+    const elapsed = Date.now() - cdInfo.startTime
+    const remaining = cdInfo.endTime - Date.now()
+    if (remaining <= 0) return
+
+    // Animate bar from current progress
+    barRef.current.animate(
+      [{ width: `${(elapsed / (cdInfo.endTime-cdInfo.startTime)) * 100}%` }, { width: '100%' }],
+      {
+        duration: remaining,
+        easing: 'linear'
+      }
+    )
+  }, [])
 
   return (
     <motion.button

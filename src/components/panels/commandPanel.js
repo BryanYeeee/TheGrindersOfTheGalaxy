@@ -9,22 +9,22 @@ const CommandPanel = () => {
   const { curPlanetKey, cooldowns } = useGameContext()
   const planetInfo = planets[curPlanetKey]
   const { config, commands } = planetInfo
-  
+
   return (
     <div className='h-full p-8'>
       <div className='space-y-3 grid'>
         <AnimatePresence>
           {Object.entries(config.commands)
-          .filter(([cmd]) => Command.isUnlocked(cmd))
-          .map(([cmd, cmdData]) => (
-            <CommandButton
-              key={curPlanetKey + cmd}
-              cmd={cmd}
-              cmdData={cmdData}
-              onCooldown={cooldowns[cmd]}
-              runCommand={cmdData => commands[cmdData.click](cmdData)}
-            />
-          ))}
+            .filter(([cmd]) => Command.isUnlocked(curPlanetKey, cmd))
+            .map(([cmd, cmdData]) => (
+              <CommandButton
+                key={curPlanetKey + cmd}
+                cmd={cmd}
+                cmdData={cmdData}
+                onCooldown={Command.isOnCooldown(cmd)}
+                runCommand={cmdData => commands[cmdData.click](cmdData)}
+              />
+            ))}
         </AnimatePresence>
       </div>
     </div>

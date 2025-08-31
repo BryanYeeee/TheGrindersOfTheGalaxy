@@ -13,12 +13,12 @@ export const venusConfig = {
             text: "take a step",
             hover: "take the step but you might die tho",
             click: "takeStep",
-            cooldown: 750,
+            cooldown: 2500,
             cost: {
                 
             }
         },
-        'carbon': {
+        'venus.carbon': {
             text: "extract carbon",
             hover: "Cost 2 Steps",
             click: "extractCarbon",

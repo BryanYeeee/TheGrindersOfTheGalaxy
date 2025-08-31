@@ -17,7 +17,7 @@ export const earthConfig = {
             cost: {
             }
         },
-        'stone': {
+        'earth.stone': {
             text: "pickup stone",
             hover: "Cost 2 Steps",
             click: "pickupStone",

@@ -1,17 +1,27 @@
 import { useState } from 'react'
 
 // Mechs
-import * as Mech from '@/lib/mech/mechExport.js';
+import * as Mech from '@/lib/mech/mechExport.js'
 
 const CheatScreen = () => {
   const [toggle, setToggle] = useState(true)
   const cheats = [
-    [['send to VENus', () => Mech.Planet.setCurPlanet('venus')]],
     [
-      ['unlock step', () => Mech.Command.unlockCommand('walk')],
-      ['unlock stone', () => Mech.Command.unlockCommand('stone')]
+      ['send to Earth', () => Mech.Planet.setCurPlanet('earth')],
+      ['send to VENus', () => Mech.Planet.setCurPlanet('venus')]
     ],
-    [['random log', () => Mech.EventLog.addEvent(Math.floor(Math.random() * 101))]],
+    [
+      ['unlock earth.step', () => Mech.Command.unlockCommand('earth', 'walk')],
+      ['unlock venus step', () => Mech.Command.unlockCommand('venus', 'walk')],
+      ['unlock earth stone', () => Mech.Command.unlockCommand('earth', 'earth.stone')],
+      ['unlock venus carbon', () => Mech.Command.unlockCommand('venus', 'venus.carbon')]
+    ],
+    [
+      [
+        'random log',
+        () => Mech.EventLog.addEvent(Math.floor(Math.random() * 101))
+      ]
+    ],
     [
       [
         '+speed 1 pick',
