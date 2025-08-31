@@ -33,7 +33,7 @@ const Main = () => {
           </button>
           <button
             className='border-1 w-10'
-            onClick={() => setSidePanelIndex(Math.abs(sidePanelIndex - 1) % 3)}
+            onClick={() => setSidePanelIndex((sidePanelIndex + 2) % 3)}
           >
             -1
           </button>
