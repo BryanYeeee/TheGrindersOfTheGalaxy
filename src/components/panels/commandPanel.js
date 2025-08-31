@@ -13,12 +13,12 @@ const CommandPanel = () => {
   return (
     <div className='h-full p-8'>
       <div className='space-y-3 grid'>
-        <AnimatePresence>
+        <AnimatePresence mode='wait'>
           {Object.entries(config.commands)
             .filter(([cmd]) => Command.isUnlocked(curPlanetKey, cmd))
             .map(([cmd, cmdData]) => (
               <CommandButton
-                key={curPlanetKey + cmd}
+                key={cmd}
                 cmd={cmd}
                 cmdData={cmdData}
                 onCooldown={Command.isOnCooldown(cmd)}
