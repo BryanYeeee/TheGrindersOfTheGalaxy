@@ -2,25 +2,41 @@ import { useState } from 'react'
 
 // Mechs
 import * as Mech from '@/lib/mech/mechExport.js'
+import { planetCommands, planetConfigs } from '@/lib/data/planet/planetExport'
 
 const CheatScreen = () => {
   const [toggle, setToggle] = useState(true)
   const cheats = [
     [
       ['unlock planet', () => Mech.Planet.unlockNextPlanet()],
-      ['send to VENus', () => Mech.Planet.setCurPlanet('venus')]],
+      ['send to VENus', () => Mech.Planet.setCurPlanet('venus')]
+    ],
     [
-      ['unlock earth.step', () => Mech.Command.unlockCommand('earth', 'walk')],
+      [
+        'unlock all earth cmds',
+        () => {
+          Object.entries(planetConfigs['earth'].commands).map(
+            (cmd) => {
+              Mech.Command.unlockCommand('earth', cmd[0])
+            }
+          )
+        }
+      ],
       ['unlock venus step', () => Mech.Command.unlockCommand('venus', 'walk')],
-      ['unlock earth stone', () => Mech.Command.unlockCommand('earth', 'earth.stone')],
-      ['unlock venus carbon', () => Mech.Command.unlockCommand('venus', 'venus.carbon')]
+      [
+        'unlock venus carbon',
+        () => Mech.Command.unlockCommand('venus', 'venus.carbon')
+      ]
     ],
     [
       [
         'random log',
         () => Mech.EventLog.addEvent(Math.floor(Math.random() * 101))
       ],
-      ['log counts', () => Mech.EventLog.addEvent(JSON.stringify(Mech.Count.count))]
+      [
+        'log counts',
+        () => Mech.EventLog.addEvent(JSON.stringify(Mech.Count.count))
+      ]
     ],
     [
       [
@@ -48,9 +64,7 @@ const CheatScreen = () => {
   ]
   return (
     <DraggableDiv initialX={10} initialY={-600}>
-      <div 
-        className='w-60 z-10 rounded border-1 m-2'
-        >
+      <div className='w-60 z-10 rounded border-1 m-2'>
         <div className='w-full opacity-80 bg-[#00000035] flex justify-between py-1 px-8 font-white'>
           CHEAT MENU
           <div

@@ -12,7 +12,7 @@ const CommandPanel = ({ type = '' }) => {
 
   return (
     <div className='h-full p-8'>
-      <div className='space-y-3 grid'>
+      <div className='grid grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] gap-4'>
         <AnimatePresence>
           {Object.entries(config.commands)
             .filter(([cmd]) => Command.isUnlocked(curPlanetKey, cmd))

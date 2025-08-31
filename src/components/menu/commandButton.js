@@ -66,7 +66,7 @@ const CommandButton = ({ cmd, cmdData, onCooldown, runCommand }) => {
       whileHover='hover'
       animate={onCooldown ? 'active' : 'initial'}
       exit={{opacity: 0, transition: {duration: 1}}}
-      className='w-32 py-1 relative z-0'
+      className='w-full py-1 relative z-0'
     >
       <div className='relative'>
         {cmdData.hover ? (
