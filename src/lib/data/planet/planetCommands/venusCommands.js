@@ -5,8 +5,8 @@ import { EventLog, Inventory } from '@/lib/mech/mechExport'
 const { doActions } = commandUtils(venusConfig)
 
 export const venusCommands = {
-  takeStep: function (data) {
-    return doActions(
+  takeStep: async function (data) {
+    return await doActions(
       [
         'died',
         false,
@@ -18,8 +18,8 @@ export const venusCommands = {
       data
     )
   },
-  extractCarbon: function (data) {
-    return doActions(
+  extractCarbon: async function (data) {
+    return await doActions(
       [
         'carbonated',
         () => {

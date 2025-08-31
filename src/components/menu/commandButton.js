@@ -4,9 +4,9 @@ import { useEffect, useRef } from 'react'
 
 const CommandButton = ({ cmd, cmdData, onCooldown, runCommand }) => {
   const barRef = useRef()
-  const startCooldown = () => {
+  const startCooldown = async () => {
     if (Command.isOnCooldown(cmd)) return
-    if (!runCommand(cmdData)) return //if command no run, mean no money, mean no cooldown
+    if (!await runCommand(cmdData)) return //if command no run, mean no money, mean no cooldown
 
     if (cmdData.cooldown) {
       Command.startCooldown(cmd, cmdData.cooldown)

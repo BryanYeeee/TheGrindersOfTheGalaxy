@@ -5,10 +5,9 @@ import { EventLog, Inventory } from '@/lib/mech/mechExport'
 const { doActions } = commandUtils(earthConfig)
 
 export const earthCommands = {
-  takeStep: function (data) {
-    return doActions(
+  takeStep: async function (data) {
+    return await doActions(
       [
-        'hello',
         {
           0: [
             'first',
@@ -22,7 +21,8 @@ export const earthCommands = {
           ],
           2: [
             'damn 2nd'
-          ]
+          ],
+          default: ['walking']
         },
         false,
         () => {
@@ -33,8 +33,8 @@ export const earthCommands = {
       data
     )
   },
-  pickupStone: function (data) {
-    return doActions(
+  pickupStone: async function (data) {
+    return await doActions(
       [
         'stones',
         () => {

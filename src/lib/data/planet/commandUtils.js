@@ -31,7 +31,8 @@ const actionHandlers = {
   function: async (fn, ctx) => fn(),
   object: async (countActions, ctx) => {
     let cmdCount = Count.getCount(ctx.config.key, ctx.data.cmd)
-    for (let a of countActions[cmdCount] ?? []) {
+
+    for (let a of countActions[cmdCount] ?? countActions.default ?? []) {
       let handler = actionHandlers[typeof a]
       if (handler) await handler(a, ctx)
     }
