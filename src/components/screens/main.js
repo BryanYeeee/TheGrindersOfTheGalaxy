@@ -22,7 +22,7 @@ const Main = () => {
         <Panel clip={'t'} bgCol={2}>
           <div className='size-full overflow-x-hidden'>
           <Switcher activeIndex={bottomPanelIndex} axis='x'>
-            {[<CommandPanel />, <EquipmentPanel />]}
+            {[<CommandPanel />, <CommandPanel type='craft' />]}
           </Switcher>
           </div>
           <button

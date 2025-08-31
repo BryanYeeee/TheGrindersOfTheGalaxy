@@ -5,7 +5,7 @@ import { AnimatePresence } from 'motion/react'
 import { Command } from '@/lib/mech/mechExport'
 import CommandButton from '@/components/menu/commandButton'
 
-const CommandPanel = () => {
+const CommandPanel = ({ type = '' }) => {
   const { curPlanetKey, cooldowns } = useGameContext()
   const config = planetConfigs[curPlanetKey]
   const commands = planetCommands[curPlanetKey]
@@ -16,13 +16,15 @@ const CommandPanel = () => {
         <AnimatePresence>
           {Object.entries(config.commands)
             .filter(([cmd]) => Command.isUnlocked(curPlanetKey, cmd))
+            .filter(([cmd, cmdData]) => (cmdData.type ?? '') === type)
+
             .map(([cmd, cmdData]) => (
               <CommandButton
                 key={cmd}
                 cmd={cmd}
                 cmdData={cmdData}
                 onCooldown={Command.isOnCooldown(cmd)}
-                runCommand={() => commands[cmdData.click]({cmd, cmdData})}
+                runCommand={() => commands[cmdData.click]({ cmd, cmdData })}
               />
             ))}
         </AnimatePresence>

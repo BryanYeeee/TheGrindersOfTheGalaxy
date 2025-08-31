@@ -1,7 +1,7 @@
 import { earthConfig } from '@/lib/data/planet/planetConfig/earthConfig'
 import { commandUtils } from '@/lib/data/planet/commandUtils'
 
-import { EventLog, Inventory } from '@/lib/mech/mechExport'
+import { Equipment, EventLog, Inventory, Command } from '@/lib/mech/mechExport'
 const { doActions } = commandUtils(earthConfig)
 
 export const earthCommands = {
@@ -19,9 +19,7 @@ export const earthCommands = {
               EventLog.addEvent('yay')
             }
           ],
-          2: [
-            'damn 2nd'
-          ],
+          2: ['damn 2nd'],
           default: ['walking']
         },
         false,
@@ -37,9 +35,21 @@ export const earthCommands = {
     return await doActions(
       [
         'stones',
+        { 0: [() => Command.unlockCommand('earth', 'earth.craftPickaxe')] },
         () => {
           console.log('bones')
           Inventory.addItem('stone', 1)
+        }
+      ],
+      data
+    )
+  },
+  craftPickaxe: async function (data) {
+    return await doActions(
+      [
+        'u got a pickaxe',
+        () => {
+          Equipment.addEquipment('pickaxe', { name: 'aaa', speed: 1 })
         }
       ],
       data

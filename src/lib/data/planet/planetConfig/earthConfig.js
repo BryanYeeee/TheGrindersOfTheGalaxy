@@ -27,6 +27,16 @@ export const earthConfig = {
                 'steps': 2,
                 // 'pickaxe': true
             }
+        },
+        'earth.craftPickaxe': {
+            type: "craft",
+            text: "craft pickaxe",
+            hover: "Cost 3 stones",
+            click: "craftPickaxe",
+            cooldown: 2000,
+            cost: {
+                'stone': 3,
+            }
         }
     }
 
