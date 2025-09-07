@@ -41,7 +41,7 @@ const PlanetPanel = () => {
   return (
 
     <>
-      <div className='h-full w-full p-2 bg-[#1B0022] flex flex-col'>
+      <div className='h-full w-full p-2 spacebg flex flex-col'>
         <PlanetNavBar />
 
         <div className='flex h-full w-full justify-center'>
