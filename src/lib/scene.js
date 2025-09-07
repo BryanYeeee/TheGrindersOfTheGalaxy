@@ -105,7 +105,7 @@ export const PlanetRender = ({ fileName }) => {
                 function (gltf) {
 
                     planet = gltf.scene;
-                    let scaleSize = 1
+                    let scaleSize = 1.5
                     planet.userData.scaleSize = scaleSize;
                     planet.scale.set(scaleSize, scaleSize, scaleSize);
 

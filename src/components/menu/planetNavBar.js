@@ -28,7 +28,7 @@ const PlanetNavBar = () => {
     }
   }
   return (
-    <div className='grid grid-cols-[repeat(auto-fill,minmax(7rem,1fr))] gap-4 px-8 py-4 '>
+    <div className='grid grid-cols-[repeat(auto-fill,minmax(7rem,1fr))] gap-4 p-2 '>
       <AnimatePresence>
         {Array.from(curPlanets).map((planetName, i) => (
           <motion.button
