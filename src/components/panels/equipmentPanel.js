@@ -17,6 +17,11 @@ const EquipmentPanel = () => {
       <Switcher activeIndex={equipPanelIndex} axis='x'>
         {[
           <>
+            <div
+              className='px-2 py-1 border-1 border-[#ffac2230] font-bold'
+            >
+              {`Equipment`}
+            </div>
             <div className='h-full p-8 overflow-y-scroll'>
               {Object.entries(equipment).map(([type]) => (
                 <EquipmentType key={type} type={type}
@@ -84,10 +89,10 @@ const EquipmentType = memo(({ type, onClick }) => {
       className="relative overflow-hidden w-full p-[2px] mb-2 bg-foreground1"
     >
       <motion.div
-        whileTap={{ 
+        whileTap={{
           backgroundColor: "var(--accent)",
           color: "var(--background)"
-         }}
+        }}
         className='flex justify-between px-2 border-1 border-accent z-10'
         onClick={onClick}
       >

@@ -16,6 +16,7 @@ export const PlanetRender = ({ fileName }) => {
 
         let camera, scene, renderer, composer;
         let planet = null;
+        let directionalLight;
         let outlinePass;
         let drag
         let lastX = 0, lastY = 0
@@ -49,6 +50,7 @@ export const PlanetRender = ({ fileName }) => {
             camera.position.z = 5;
 
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setClearColor(0x000000, 0);
             renderer.setSize(
                 width,
                 height
@@ -75,10 +77,10 @@ export const PlanetRender = ({ fileName }) => {
             outlinePass.selectedObjects = []
             composer.addPass(outlinePass);
 
-            const ambientLight = new THREE.AmbientLight(0xFFD1DC, 1);
+            const ambientLight = new THREE.AmbientLight(0xFFFFFF, 1);
             scene.add(ambientLight);
 
-            const directionalLight = new THREE.DirectionalLight(0xFFFFDC, 3);
+            directionalLight = new THREE.DirectionalLight(0xffcf30, 3);
             directionalLight.position.set(5, 5, 0);
             scene.add(directionalLight);
 
@@ -122,7 +124,8 @@ export const PlanetRender = ({ fileName }) => {
                             child.geometry.computeVertexNormals();
                             //child.geometry = LoopSubdivision.modify(child.geometry, 1, params);
                             const mat = new THREE.MeshToonMaterial({
-                                color: child.material.color,
+                                map: child.material.map || null,
+                                color: child.material.color.clone(),
                                 gradientMap: gradientMap,
                                 emissive: new THREE.Color(0x000000),
                                 emissiveIntensity: 0.0,
@@ -143,26 +146,33 @@ export const PlanetRender = ({ fileName }) => {
         function animate() {
             animationId = requestAnimationFrame(animate)
 
-            rotateCooldown-=1;//abysmal coding
-            if(drag){
+            rotateCooldown -= 1;//abysmal coding
+            if (drag) {
                 rotateCooldown = maxRotateCooldown
             }
             if (planet && rotateCooldown < 0) {
                 planet.rotation.y += 0.005;
             }
+            let time = Date.now()*0.0001
+            directionalLight.position.set(
+                Math.cos(time) * 5,
+                0,
+                Math.sin(time) * 5
+            );
+            directionalLight.lookAt(0, 0, 0);
 
             composer.render();
         }
 
         function onMouseDown(e) {
-            if(!planet) return
+            if (!planet) return
             drag = true
             lastX = e.clientX
             lastY = e.clientY
         }
 
         function onMouseUp() {
-            if(!planet) return
+            if (!planet) return
             drag = false
         }
 

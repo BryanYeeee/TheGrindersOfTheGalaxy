@@ -2,7 +2,7 @@ export const venusConfig = {
     name: "venus",
     key: "venus",
     description: "you are NOT here",
-    src: "alien.glb",
+    src: "venus.glb",
     stats: {
         hunger: 25,
         naturalheat: 10,

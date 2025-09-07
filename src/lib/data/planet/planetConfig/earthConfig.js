@@ -2,7 +2,7 @@ export const earthConfig = {
     name: "Earth",
     key: "earth",
     description: "you are here",
-    src: "alien.glb",
+    src: "earth.glb",
     stats: {
         hunger: 5,
         naturalheat: 0,

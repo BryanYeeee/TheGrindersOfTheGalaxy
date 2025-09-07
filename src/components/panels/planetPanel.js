@@ -41,16 +41,16 @@ const PlanetPanel = () => {
   return (
 
     <>
-      <div className='h-full w-full p-2'>
+      <div className='h-full w-full p-2 bg-[#1B0022] flex flex-col'>
         <PlanetNavBar />
 
-        <div className='flex h-2/3 w-full justify-center'>
+        <div className='flex h-full w-full justify-center'>
           <div className='aspect-square w-1/3'>
-            <PlanetRender key={config.src} fileName={config.src} />
+            <PlanetRender fileName={config.src} />
           </div>
 
           <div className="absolute left-3/5 top-1/4 flex">
-            <div className="mt-10 w-12 h-8 flex-shrink-0">
+            <div className="mt-15 w-12 h-8 flex-shrink-0">
               <EveDiamond />
             </div>
             <div className="border-1 p-2">
