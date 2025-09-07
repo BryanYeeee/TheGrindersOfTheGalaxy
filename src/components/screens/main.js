@@ -21,19 +21,19 @@ const Main = () => {
         </Panel>
         <Panel clip={'t'} bgCol={2}>
           <div className='size-full overflow-x-hidden'>
-          <Switcher activeIndex={bottomPanelIndex} axis='x'>
-            {[<CommandPanel />, <CommandPanel type='craft' />]}
-          </Switcher>
+            <Switcher activeIndex={bottomPanelIndex} axis='x'>
+              {[<CommandPanel />, <CommandPanel type='craft' />]}
+            </Switcher>
           </div>
           <button
             className='border-1 w-10'
-            onClick={() => setSidePanelIndex((sidePanelIndex + 1) % 3)}
+            onClick={() => setSidePanelIndex((sidePanelIndex + 1) % 2)}
           >
             +1
           </button>
           <button
             className='border-1 w-10'
-            onClick={() => setSidePanelIndex((sidePanelIndex + 2) % 3)}
+            onClick={() => setSidePanelIndex(Math.abs(sidePanelIndex - 1) % 2)}
           >
             -1
           </button>
@@ -59,9 +59,6 @@ const Main = () => {
           </Panel>,
           <Panel clip='l' bgCol={1}>
             <EquipmentPanel />
-          </Panel>,
-          <Panel clip='l' bgCol={1}>
-            YOOOOOOOOOO
           </Panel>
         ]}
       </Switcher>

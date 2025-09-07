@@ -1,5 +1,5 @@
 import { useGameContext } from '@/context/gameContext'
-import RadialBar from '../menu/radialBar'
+import RadialBar from '@/components/menu/radialBar'
 
 const StatusPanel = () => {
   const { status } = useGameContext()

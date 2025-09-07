@@ -8,6 +8,13 @@ const CheatScreen = () => {
   const [toggle, setToggle] = useState(true)
   const cheats = [
     [
+      ['all', () => {
+        cheats.forEach(section => {
+          section.forEach(([label, action]) => { if (label !== 'all') action() })
+        })
+      }]
+    ],
+    [
       ['unlock planet', () => Mech.Planet.unlockNextPlanet()],
       ['send to VENus', () => Mech.Planet.setCurPlanet('venus')]
     ],
